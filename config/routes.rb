@@ -1,10 +1,11 @@
 Photoapp::Application.routes.draw do
+  get "home/index"
+  # use the home controller/view
+  root "home#index"
   devise_for :users
-  resources :comments
-
-  resources :photos
-  root :to => redirect('/photos')
-
+  resources :photos do
+   resources :comments, :shallow => true
+ end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
